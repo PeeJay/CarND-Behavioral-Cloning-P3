@@ -22,9 +22,6 @@ The goals / steps of this project are the following:
 [image2]: ./examples/center.jpg "Centre"
 [image3]: ./examples/left.jpg "Left"
 [image4]: ./examples/right.jpg "Right"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -96,8 +93,9 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes:
 
+```
 ____________________________________________________________________________________________________
 Layer (type)                     Output Shape          Param #     Connected to
 ====================================================================================================
@@ -106,14 +104,19 @@ ________________________________________________________________________________
 lambda_1 (Lambda)                (None, 80, 320, 3)    0           cropping2d_1[0][0]
 ____________________________________________________________________________________________________
 convolution2d_1 (Convolution2D)  (None, 38, 106, 24)   1824        lambda_1[0][0]
+(5x5 kernel, 2x3 subsampling)
 ____________________________________________________________________________________________________
 convolution2d_2 (Convolution2D)  (None, 17, 34, 36)    21636       convolution2d_1[0][0]
+(5x5 kernel, 2x3 subsampling)
 ____________________________________________________________________________________________________
 convolution2d_3 (Convolution2D)  (None, 7, 15, 48)     43248       convolution2d_2[0][0]
+(5x5 kernel, 2x2 subsampling)
 ____________________________________________________________________________________________________
 convolution2d_4 (Convolution2D)  (None, 5, 13, 64)     27712       convolution2d_3[0][0]
+(3x3 kernel)
 ____________________________________________________________________________________________________
 convolution2d_5 (Convolution2D)  (None, 3, 11, 64)     36928       convolution2d_4[0][0]
+(3x3 kernel)
 ____________________________________________________________________________________________________
 flatten_1 (Flatten)              (None, 2112)          0           convolution2d_5[0][0]
 ____________________________________________________________________________________________________
@@ -134,6 +137,7 @@ dense_4 (Dense)                  (None, 1)             11          dense_3[0][0]
 Total params: 348,219
 Trainable params: 348,219
 Non-trainable params: 0
+```
 
 #### 3. Creation of the Training Set & Training Process
 
